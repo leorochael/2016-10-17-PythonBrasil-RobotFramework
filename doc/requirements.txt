@@ -1,0 +1,4 @@
+hieroglyph
+sphinxcontrib-robotframework
+robotframework-selenium2screenshots
+Pillow

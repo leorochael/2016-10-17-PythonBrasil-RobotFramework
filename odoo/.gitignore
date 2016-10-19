@@ -1,0 +1,12 @@
+/bin
+/develop-eggs
+/etc
+/include
+/lib
+/parts
+/pip-selfcheck.json
+/src
+/var
+/upgrade.py
+/.installed.cfg
+/.mr.developer.cfg
