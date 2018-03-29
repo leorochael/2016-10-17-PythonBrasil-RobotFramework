@@ -282,15 +282,15 @@ Setup / Tear Down
 .. code-block:: robotframework
 
   ** Variables **    Valores
-  ${SPEED}           0.
+  ${SPEED}           0
 
   ** Keywords **
 
   Abrir Browser
     # Config Chrome para portugues
     Set Environment Variable    LANGUAGE    pt-BR
-    Set Selenium Speed      ${SPEED}
     Open Browser    http://localhost:8069/web/login    browser=chrome
+    Set Selenium Speed      ${SPEED}
 
   Login Test Setup
     Ir para a página de Login
@@ -311,5 +311,6 @@ Comandos para consertar bugs...
     ...    JQuery Is Loaded
 
   JQuery Is Loaded
-    ${jQueryType} =    Execute javascript    return typeof(window.jQuery);
+    ${jQueryType} =    Execute javascript
+    ...    return typeof(window.jQuery);
     Should Be Equal    function    ${jQueryType}
