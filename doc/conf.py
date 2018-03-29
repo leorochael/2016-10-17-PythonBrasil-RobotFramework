@@ -349,7 +349,6 @@ texinfo_documents = [
 
 extensions += [
     'hieroglyph',
-    'sphinxcontrib_robotframework',
 ]
 
 slide_title = 'Robot Framework'
