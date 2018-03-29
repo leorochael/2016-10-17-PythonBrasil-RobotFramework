@@ -58,7 +58,7 @@ Formato Tabular? Verbos?
 
 Assim:
 
-.. code-block:: robotframework
+.. code:: robotframework
 
   | * Test Cases * | Verbos                        | Argumentos | ...   |
   | Login Válido   |                               |            |       |
@@ -85,10 +85,9 @@ Verbos
 Verbos
 ======
 
-.. code::
+.. code:: text
 
   |                | Digitar no Campo              | E-mail     | demo  |
-  |                | Digitar no Campo              | Senha      | demo  |
 
 .. code-block:: robotframework
 
@@ -96,8 +95,8 @@ Verbos
 
   Digitar no Campo
     [Arguments]    ${name}    ${value}
-    Input Text    xpath=//input[@id=( //label[ text()='${name}' ]/@for )]
-    ...           ${value}
+    Input Text  xpath=//input[@id=( //label[ text()='${name}' ]/@for )]
+    ...         ${value}
 
 .. image:: _static/imgs/label.png
   :align: center
@@ -113,7 +112,7 @@ Verbos
 Verbos
 ======
 
-.. code::
+.. code:: text
 
   |                | Ativar o Botão                | Acessar    |       |
 
@@ -191,7 +190,7 @@ Campo "E-mail" e sua notinha
 
     ${label} =    Set Variable    jquery=label[for="login"]
     ${label_note} =    Add Pointy Note    ${label}
-    ...     Label for "E-mail" field    position=top
+    ...     Label for "E-mail" field    position=bottom
 
     ${field} =    Set Variable    id=login
     ${field_note} =    Add Pointy Note    ${field}
@@ -211,12 +210,12 @@ Botão de login e sua notinha:
 
   ** Test Cases **
   Login Button Screenshot
-  [Tags]    Screenshot
+    [Tags]    Screenshot
 
     ${note} =    Add Pointy Note    jquery=button[type=submit]
     ...     Botão de Envio    position=right
 
-    Capture and crop page screenshot    _static/imgs/login.png
+    Capture and crop page screenshot    _static/imgs/login-button.png
     ...     jquery=button[type=submit]    ${note}
 
     Remove element    ${note}
@@ -269,23 +268,35 @@ E de onde vieram esses outros comandos?
 
   ** Settings **          Valores
 
+  Library                 OperatingSystem
   Library                 Selenium2Library
   Library                 Selenium2Screenshots
-  Suite Setup             Abrir Browser no Login
+  Suite Setup             Abrir Browser
   Test Setup              Login Test Setup
+  Test TearDown           Login Test TearDown
   Suite TearDown          Close All Browsers
+
+Setup / Tear Down
+=================
+
+.. code-block:: robotframework
 
   ** Variables **    Valores
   ${SPEED}           0.
 
   ** Keywords **
 
-  Abrir Browser no Login
+  Abrir Browser
+    # Config Chrome para portugues
+    Set Environment Variable    LANGUAGE    pt-BR
     Set Selenium Speed      ${SPEED}
     Open Browser    http://localhost:8069/web/login    browser=chrome
 
   Login Test Setup
     Ir para a página de Login
+
+  Login Test TearDown
+    Go To    http://localhost:8069/web/session/logout
 
 Comandos para consertar bugs...
 ===============================
@@ -296,7 +307,7 @@ Comandos para consertar bugs...
 
   Really Boostrap jQuery
     Bootstrap jQuery
-    Wait Until Keyword Succeeds    20    1 sec
+    Wait Until Keyword Succeeds    10x    0.1 sec
     ...    JQuery Is Loaded
 
   JQuery Is Loaded
