@@ -1,0 +1,8 @@
+# sphinx artifacts
+/_build
+/_static
+
+# robot framework artifacts
+/output.xml
+/log.html
+/report.html
